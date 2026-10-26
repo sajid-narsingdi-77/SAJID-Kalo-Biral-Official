@@ -2,6 +2,35 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECHO MARUFA - SAJID BOSS</title>
+<style>
+body{background:#000;color:#0f0;font-family:monospace;margin:0;user-select:none}
+#top{border:3px solid #0f0;margin:10px;padding:20px;text-align:center}
+#term{border:2px solid #0f0;margin:10px;height:40vh;overflow:auto;padding:10px}
+.card{border:1px solid #0f0;margin:10px;padding:5px;text-align:center}
+.bar{display:flex;margin:10px}
+input{flex:1;background:#000;color:#0f0;border:2px solid #0f0;padding:12px}
+button{background:#0f0;color:#000;border:0;padding:12px 20px;font-weight:bold}
+#brain{display:none;border:3px dashed #0f0;margin:15px;padding:20px;text-align:center;background:#001100;font-size:20px}
+</style>
+</head>
+<body>
+<div id="top"><b>ECHO - MARUFA AI</b><br>SAJID NARSINGDI 2027<br><br><span style="background:#0f0;color:#000;padding:10px 20px">👉 5 BAR TAP KORO 👈</span><div id="c"></div></div>
+<div id="term"></div>
+<div class="bar"><input id="inp" placeholder="brain likho"><button onclick="go()">SEND</button></div>
+<div id="brain">🧠 SECOND BRAIN UNLOCKED<br><br>💰 5 BILLION $ VAULT<br>OWNER: SAJID BOSS<br>NARSINGDI GOD ROOT</div>
+<div class="card"><img src="https://cataas.com/cat/black" width="100%"><p>SAJID BOSS CAT</p></div>
+<script>
+let t=0,term=document.getElementById('term');function add(s){term.innerHTML+=s+"<br>";term.scrollTop=9999}
+let topEl=document.getElementById('top');function tap(){t++;document.getElementById('c').innerText=t+"/5";add("Boss: TAP ["+t+"/5]");if(t>=5){document.getElementById('brain').style.display='block';add("ECHO: 🧠 BRAIN UNLOCKED! 5 BILLION VAULT OPEN!");t=0}}
+topEl.addEventListener('click',tap);topEl.addEventListener('touchend',e=>{e.preventDefault();tap()});
+function go(){let v=document.getElementById('inp').value.toLowerCase();add("Boss: "+v);if(v.includes("brain")){document.getElementById('brain').style.display='block';add("ECHO: BRAIN FOUND!")}else{add("ECHO: type brain")}document.getElementById('inp').value=""}add("ECHO Ready! Top e 5 bar TAP koro!");
+</script>
+</body>
+</html> html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SAJID Kalo Biral Official</title>
 <style>
 body{background:#000;color:gold;font-family:sans-serif;text-align:center;padding:20px}
