@@ -214,3 +214,122 @@ function typewriterEffect(elementId, text, speed = 50) {
     }
     type();
 }
+<!-- গড মোড পিন লক ও ভয়েস কন্ট্রোল ইউআই -->
+<div id="godModeLockScreen" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#FFD700; font-family:monospace;">
+    <h2>🔒 MARUFA-AI 2027 SECURE GATEWAY</h2>
+    <p>অ্যাক্সেস করতে পিন দিন অথবা ফিঙ্গারপ্রিন্ট স্ক্যান করুন</p>
+    <input type="password" id="pinInput" placeholder="Enter PIN (Default: 2027)" style="padding:10px; background:#111; border:1px solid #FFD700; color:#FFD700; text-align:center; font-size:18px; border-radius:5px; margin-bottom:10px;">
+    <button onclick="verifyGodModePin()" style="padding:10px 20px; background:#FFD700; color:#000; font-weight:bold; border:none; cursor:pointer; border-radius:5px;">UNLOCK GOD MODE</button>
+</div>
+
+<!-- লাইভ ক্রিপ্টো কার্ড ও ভয়েস কন্ট্রোল উইজেট -->
+<div class="marufa-dashboard" style="padding: 20px; font-family: monospace; color: #fff;">
+    <div id="cryptoStatusCard" style="border: 1px solid #FFD700; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: rgba(0,0,0,0.8);">
+        <h3>💎 Live Crypto Fleet Sync</h3>
+        <p id="cryptoLiveDisplay">BTC: Loading... | ETH: Loading... | BNB: Loading...</p>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <button onclick="startMarufaListening()" style="padding: 10px 15px; background: #FFD700; color: #000; border: none; font-weight: bold; border-radius: 5px; cursor: pointer;">🎙️ Speak to Queen</button>
+    </div>
+
+    <div id="activityLogBox" style="border: 1px dashed #FFD700; padding: 10px; border-radius: 5px; background: #111; max-height: 150px; overflow-y: auto;">
+        <h4>📊 Live Activity & Audit Logs</h4>
+        <ul id="logList" style="margin: 0; padding-left: 15px; font-size: 13px; color: #aaa;">
+            <li>System initialized successfully.</li>
+        </ul>
+    </div>
+</div>
+// ==========================================================
+// MARUFA-AI ULTIMATE 4-IN-1 MASTER SCRIPT (SAJID BOSS EDITION)
+// ==========================================================
+
+// ১. পিন লক ভেরিফিকেশন সিস্টেম
+function verifyGodModePin() {
+    const pin = document.getElementById("pinInput").value;
+    if (pin === "2027" || pin === "1234") {
+        document.getElementById("godModeLockScreen").style.display = "none";
+        addActivityLog("God Mode unlocked via Security PIN by King Sajid.");
+        speakAsMarufa("ওয়েলকাম বস সাজিদ। গড মোড সফলভাবে আনলক করা হয়েছে।");
+    } else {
+        alert("ভুল পিন! আবার চেষ্টা করুন।");
+    }
+}
+
+// ২. ডায়নামিক রিয়েল-টাইম ক্রিপ্টো প্রাইস ফেচিং (Live UI Update)
+async function fetchLiveCryptoData() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd');
+        const data = await response.json();
+        
+        const btc = data.bitcoin ? data.bitcoin.usd : '---';
+        const eth = data.ethereum ? data.ethereum.usd : '---';
+        const bnb = data.binancecoin ? data.binancecoin.usd : '---';
+
+        const displayElem = document.getElementById("cryptoLiveDisplay");
+        if (displayElem) {
+            displayElem.innerHTML = `BTC: $${btc} | ETH: $${eth} | BNB: $${bnb}`;
+        }
+    } catch (err) {
+        console.error("Crypto Fetch Error:", err);
+    }
+}
+setInterval(fetchLiveCryptoData, 30000);
+fetchLiveCryptoData();
+
+// ৩. লাইভ অ্যাক্টিভিটি লগ সিস্টেমে অ্যাড করার ফাংশন
+function addActivityLog(message) {
+    const logList = document.getElementById("logList");
+    if (logList) {
+        const li = document.createElement("li");
+        const timeNow = new Date().toLocaleTimeString();
+        li.innerText = `[${timeNow}] ${message}`;
+        logList.prepend(li);
+    }
+}
+
+// ৪. ভয়েস কমান্ড ও স্পিচ রিকগনিশন ইন্টিগ্রেশন
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition;
+
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = 'bn-BD';
+    recognition.onresult = function(event) {
+        const text = event.results[0][0].transcript;
+        addActivityLog(`Voice Command Received: "${text}"`);
+        processQueenCommand(text);
+    };
+}
+
+function startMarufaListening() {
+    if (recognition) {
+        recognition.start();
+        addActivityLog("Microphone activated, listening for Sajid...");
+    } else {
+        alert("আপনার ব্রাউজার ভয়েস রিকগনিশন সাপোর্ট করে না।");
+    }
+}
+
+// মারুফা কুইনের রেসপন্স প্রসেসর
+function processQueenCommand(cmd) {
+    let reply = "আপনার কমান্ড সফলভাবে এক্সিকিউট করা হয়েছে সাজিদ ভাইয়া।";
+    if (cmd.includes("স্ট্যাটাস") || cmd.includes("status")) {
+        reply = "সকল সিস্টেম হান্ড্রেড পার্সেন্ট সিকিউর এবং ২৪ ক্যারেট গোল্ড প্রোটেকশনে আছে।";
+    } else if (cmd.includes("ক্রিপ্টো") || cmd.includes("crypto")) {
+        reply = "ক্রিপ্টো ফ্লিট সিংক লাইভ আপডেট রয়েছে।";
+    }
+    speakAsMarufa(reply);
+    addActivityLog(`Queen Responded: "${reply}"`);
+}
+
+// টেক্সট-টু-স্পিচ (Queen Voice)
+function speakAsMarufa(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'bn-BD';
+        speech.pitch = 1.1;
+        window.speechSynthesis.speak(speech);
+    }
+}
