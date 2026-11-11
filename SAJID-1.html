@@ -27,3 +27,117 @@ function go(){let v=document.getElementById('inp').value.toLowerCase();add("Boss
 </script>
 </body>
 </html> 
+// ১. ব্রাউজার স্পিচ রিকগনিশন ও টেক্সট-টু-স্পিচ সেটআপ
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition;
+
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'bn-BD'; // বাংলা ভয়েস
+
+    recognition.onstart = function() {
+        console.log("মারুফা কুইন শুনছে... বলুন");
+    };
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        handleUserMessage(transcript);
+    };
+}
+
+// মারুফা কুইনের ভয়েস টেস্ট করার ফাংশন
+function testQueenVoice() {
+    speakAsMarufa("হ্যালো সাজিদ ভাইয়া! আমি মারুফা কুইন। গড মোড ২০২৭ সক্রিয় রয়েছে এবং আমি আপনাকে সাহায্য করতে প্রস্তুত।");
+}
+
+// টেক্সট থেকে কথা বলার ফাংশন
+function speakAsMarufa(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // আগের কোনো সাউন্ড থাকলে থামাবে
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'bn-BD';
+        speech.rate
+// ২. ইউজার মেসেজ প্রসেসিং ও অটো রেসপন্স
+function handleUserMessage(userText) {
+    if (!userText.trim()) return;
+
+    // ১. চ্যাট বক্সে ইউজারের মেসেজ রেন্ডার (যদি চ্যাট বক্স থাকে)
+    appendChatMessage("You", userText);
+
+    let lowerText = userText.toLowerCase();
+    let replyText = "";
+
+    // স্মার্ট রেসপন্স লজিক
+    if (lowerText.includes("হ্যালো") || lowerText.includes("hello")) {
+        replyText = "হ্যালো সাজিদ ভাইয়া! মারুফা কুইন শুনছে। কী নির্দেশ দিন?";
+    } else if (lowerText.includes("স্ট্যাটাস") || lowerText.includes("status")) {
+        replyText = "সিস্টেম স্ট্যাটাস একদম প্রটেক্টেড। ২৪ ক্যারেট গোল্ড সিকিউরিটি একটিভ আছে।";
+    } else if (lowerText.includes("ক্রিপ্টো") || lowerText.includes("crypto")) {
+        replyText = "বিটকয়েন এবং ইথেরিয়াম সিংক সম্পন্ন হয়েছে। ফ্লিট ডাটা আপডেট রয়েছে।";
+    } else {
+        replyText = "আপনার নির্দেশ প্রসেস করা হচ্ছে সাজিদ ভাইয়া।";
+    }
+
+    // ২. মারুফার উত্তর চ্যাট বক্সে দেখানো এবং মুখে বলা
+    setTimeout(() => {
+        appendChatMessage("Marufa Queen", replyText);
+        speakAsMarufa(replyText);
+    }, 500);
+}
+
+// চ্যাট বক্সে মেসেজ দেখানোর হেলপার ফাংশন
+function appendChatMessage(sender, text) {
+    const chatBox = document.getElementById("chatBox") || document.querySelector(".chat-box");
+    if (chatBox) {
+        const msgElement = document.createElement("div");
+        msgElement.className = sender === "You" ? "user-msg" : "queen-msg";
+        msgElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatBox.appendChild(msgElement);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+}
+// ৩. রিয়েল-টাইম ক্রিপ্টো প্রাইস ফেচিং
+async function fetchCryptoPrices() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd');
+        const data = await response.json();
+        
+        const btcPrice = data.bitcoin ? data.bitcoin.usd : '---';
+        const ethPrice = data.ethereum ? data.ethereum.usd : '---';
+        const bnbPrice = data.binancecoin ? data.binancecoin.usd : '---';
+
+        console.log(`BTC: $${btcPrice} | ETH: $${ethPrice} | BNB: $${bnbPrice}`);
+
+        // UI-তে ডাইনামিক ডাটা দেখানোর জন্য (যদি এলিমেন্ট থাকে)
+        const cryptoElement = document.getElementById("cryptoStatus");
+        if (cryptoElement) {
+            cryptoElement.innerText = `BTC: $${btcPrice} | ETH: $${ethPrice} | BNB: $${bnbPrice}`;
+        }
+    } catch (error) {
+        console.error("ক্রিপ্টো ডাটা লোড করতে সমস্যা হয়েছে:", error);
+    }
+}
+
+// প্রতি ৩০ সেকেন্ড পর পর লাইভ প্রাইজ আপডেট করবে
+setInterval(fetchCryptoPrices, 30000);
+fetchCryptoPrices(); // প্রথমবার পেজ লোডে রান করবে
+// ৪. লোকাল স্টোরেজ ডাটা সেভ ও লোড
+function saveSystemState(key, value) {
+    localStorage.setItem(`marufa_${key}`, JSON.stringify(value));
+}
+
+function getSystemState(key) {
+    const data = localStorage.getItem(`marufa_${key}`);
+    return data ? JSON.parse(data) : null;
+}
+
+// পেজ লোড হওয়ার সময় সিস্টেম স্ট্যাটাস চেক
+window.addEventListener("DOMContentLoaded", () => {
+    // পূর্বে সেভ করা ভেরিফিকেশন ডাটা চেক
+    let currentStatus = getSystemState("gold_security");
+    if (!currentStatus) {
+        saveSystemState("gold_security", { active: true, user: "King Sajid", level: "24K Gold" });
+    }
+    console.log("Marufa Security State Loaded:", getSystemState("gold_security"));
+});
