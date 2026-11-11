@@ -803,3 +803,173 @@ window.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$5B EMPIRE - ECHO MARUFA QUEEN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #121212;
+            border: 2px solid #ffd700;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #ffd700;
+            font-size: 22px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            margin-bottom: 5px;
+        }
+        .header p {
+            font-size: 12px;
+            color: #aaa;
+            letter-spacing: 1px;
+        }
+        .badge-container {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .chat-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            min-height: 150px;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .queen-msg {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 3px solid #ffd700;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        .input-group input {
+            flex: 1;
+            background: #1f1f1f;
+            border: 1px solid #ffd700;
+            border-radius: 30px;
+            padding: 12px 18px;
+            color: #fff;
+            outline: none;
+            font-size: 14px;
+        }
+        .input-group button {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>💎 $5B BILLION EMPIRE</h1>
+            <p>ECHO MARUFA QUEEN • NARSINGDI AI LAB • 2027</p>
+        </div>
+
+        <div class="badge-container">
+            <div class="badge">LIMITED EDITION</div>
+            <div class="badge">AUTO-TALK ACTIVE</div>
+            <div class="badge">SWEET VOICE</div>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="queen-msg">
+                <strong>💖 QUEEN:</strong> Sajid Boss, tomar $5B EMPIRE অল-ইন-ওয়ান সিস্টেম একদম ডায়মন্ড লেভেলে রেডি! বলো কী করতে হবে?
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="userInput" placeholder="লিখো আর Enter চাপো...">
+            <button onclick="sendMessage()">🚀</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chatBox = document.getElementById('chatBox');
+            const text = input.value.trim();
+
+            if(text === '') return;
+
+            // User Message
+            chatBox.innerHTML += `<div style="margin-bottom: 10px; text-align: right;"><strong>সাজিদ:</strong> ${text}</div>`;
+            
+            // Queen Auto Response
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="queen-msg"><strong>💖 QUEEN:</strong> বস, "${text}" কমান্ড রিসিভ হয়েছে। সিস্টেম ফুল স্পিডে কাজ করছে!</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                
+                // Voice Synthesis (Bangla)
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(`বস, ${text} নিয়ে কাজ শুরু করে দিয়েছি।`);
+                    utterance.lang = 'bn-BD';
+                    window.speechSynthesis.speak(utterance);
+                }
+            }, 500);
+
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.getElementById('userInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
