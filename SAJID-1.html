@@ -141,3 +141,76 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     console.log("Marufa Security State Loaded:", getSystemState("gold_security"));
 });
+// ==========================================
+// MARUFA-AI 4-IN-1 ADVANCED UPGRADE BUNDLE
+// ==========================================
+
+// ১. রিয়েল-টাইম স্মার্ট এআই রেসপন্স ইঞ্জিন
+async function getSmartAIResponse(promptText) {
+    try {
+        console.log("প্রসেস হচ্ছে: " + promptText);
+        let responseMessage = "সাজিদ ভাইয়া, আপনার কমান্ড গড মোডে প্রসেস করা হয়েছে।";
+        
+        if (promptText.toLowerCase().includes("sajid") || promptText.toLowerCase().includes("সাজিদ")) {
+            responseMessage = "স্বাগতম বস সাজিদ! নর্সিংদী এআই ল্যাব এবং ২৪ ক্যারেট গোল্ড সিকিউরিটি সম্পূর্ণ সুরক্ষিত আছে।";
+        } else if (promptText.toLowerCase().includes("status") || promptText.toLowerCase().includes("স্ট্যাটাস")) {
+            responseMessage = "সকল সিস্টেম লাইভ ও রানিং। ভিআইপি কার্ড এবং ক্রিপ্টো ফ্লিট সিংক ১০০% সক্রিয়।";
+        }
+
+        appendChatMessage("Marufa Queen", responseMessage);
+        speakAsMarufa(responseMessage);
+    } catch (error) {
+        console.error("AI Error:", error);
+    }
+}
+
+// ২. ফিঙ্গারপ্রিন্ট স্ক্যানিং ও ভেরিফিকেশন অ্যানিমেশন ইফেক্ট
+function triggerFingerprintScan() {
+    const statusBox = document.getElementById("securityStatus");
+    if (statusBox) {
+        statusBox.innerHTML = "🔒 স্ক্যানিং চলছে... অনুগ্রহ করে অপেক্ষা করুন।";
+        setTimeout(() => {
+            statusBox.innerHTML = "✅ King Sajid Card Verified (24K Gold Security Active)";
+            speakAsMarufa("ফিঙ্গারপ্রিন্ট ভেরিফিকেশন সফল হয়েছে সাজিদ ভাইয়া।");
+        }, 1500);
+    }
+}
+
+// ৩. নোটিফিকেশন বা অ্যাকশন সাউন্ড ইফেক্ট (Web Audio API)
+function playSystemAlertSound() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // ফ্রিকোয়েন্সি
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.2); // ০.২ সেকেন্ডের সাউন্ড
+    } catch (e) {
+        console.log("Audio not supported or blocked");
+    }
+}
+
+// ৪. গড মোড টাইপরাইটার এফেক্ট (Terminal Style)
+function typewriterEffect(elementId, text, speed = 50) {
+    const targetElement = document.getElementById(elementId);
+    if (!targetElement) return;
+    
+    targetElement.innerHTML = "";
+    let i = 0;
+    
+    function type() {
+        if (i < text.length) {
+            targetElement.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
