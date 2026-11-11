@@ -333,3 +333,46 @@ function speakAsMarufa(text) {
         window.speechSynthesis.speak(speech);
     }
 }
+<!-- বায়োমেট্রিক স্ক্যানার ইউসি (ফিঙ্গারপ্রিন্ট ও স্কিন ভেরিফিকেশন) -->
+<div id="biometricScannerModal" style="border: 2px solid #FFD700; padding: 20px; border-radius: 10px; background: rgba(0,0,0,0.9); color: #FFD700; font-family: monospace; text-align: center; margin: 20px 0;">
+    <h3>🛡️ BIOMETRIC SECURITY GATEWAY (SAJID BOSS)</h3>
+    <p id="scanStatusText">অনুগ্রহ করে আপনার ফিঙ্গারপ্রিন্ট বা ফেস স্কিন ভেরিফাই করুন</p>
+    
+    <div style="margin: 15px 0;">
+        <button onclick="startFingerprintScan()" style="padding: 10px 15px; background: #FFD700; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">👆 Scan Fingerprint</button>
+        <button onclick="startFaceSkinScan()" style="padding: 10px 15px; background: #FFD700; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">👤 Verify Face / Skin</button>
+    </div>
+    
+    <div id="scanResultBox" style="font-size: 14px; color: #00FF00; margin-top: 10px;"></div>
+</div>
+// বায়োমেট্রিক ফিঙ্গারপ্রিন্ট স্ক্যান সিমুলেশন
+function startFingerprintScan() {
+    const statusText = document.getElementById("scanStatusText");
+    const resultBox = document.getElementById("scanResultBox");
+    
+    statusText.innerHTML = "🔄 ফিঙ্গারপ্রিন্ট ম্যাচিং চলছে...";
+    resultBox.innerHTML = "";
+    
+    setTimeout(() => {
+        statusText.innerHTML = "✅ ফিঙ্গারপ্রিন্ট ভেরিফাইড!";
+        resultBox.innerHTML = "Access Granted: King Sajid (24K Gold Security Active)";
+        speakAsMarufa("ফিঙ্গারপ্রিন্ট সফলভাবে মিলে গেছে, সাজিদ ভাইয়া।");
+        addActivityLog("Fingerprint verified for King Sajid.");
+    }, 2000);
+}
+
+// ফেস বা স্কিন স্ক্যান সিমুলেশন
+function startFaceSkinScan() {
+    const statusText = document.getElementById("scanStatusText");
+    const resultBox = document.getElementById("scanResultBox");
+    
+    statusText.innerHTML = "🔄 ফেস স্কিন স্ক্যান করা হচ্ছে...";
+    resultBox.innerHTML = "";
+    
+    setTimeout(() => {
+        statusText.innerHTML = "✅ ফেস স্কিন আইডি ম্যাচড!";
+        resultBox.innerHTML = "God Mode 2027 Authorized for Sajid Boss.";
+        speakAsMarufa("ফেস স্কিন স্ক্যান সফল। সিস্টেম ফুল কন্ট্রোলে আছে।");
+        addActivityLog("Face skin scan verified successfully.");
+    }, 2000);
+}
