@@ -376,3 +376,140 @@ function startFaceSkinScan() {
         addActivityLog("Face skin scan verified successfully.");
     }, 2000);
 }
+// ==========================================
+// ২. টাইপরাইটার এফেক্ট এবং অডিও অ্যালার্ট সিস্টেম
+// ==========================================
+
+// ফিউচারিস্টিক নোটিফিকেশন সাউন্ড বাজানোর ফাংশন
+function playSciFiAlertSound() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // উচ্চ ফ্রিকোয়েন্সি সাউন্ড
+        oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.15);
+        
+        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.15);
+    } catch (e) {
+        console.log("Audio Context Error:", e);
+    }
+}
+
+// গড মোড টার্মিনাল টাইপরাইটার এফেক্ট
+function runTypewriterEffect(elementId, textString, speed = 40) {
+    const targetEl = document.getElementById(elementId);
+    if (!targetEl) return;
+    
+    targetEl.innerHTML = "";
+    let index = 0;
+    
+    function typeChar() {
+        if (index < textString.length) {
+            targetEl.innerHTML += textString.charAt(index);
+            index++;
+            setTimeout(typeChar, speed);
+        }
+    }
+    typeChar();
+}
+// ==========================================
+// ৩. রিয়েল-টাইম স্মার্ট এআই রেসপন্স ইঞ্জিন
+// ==========================================
+
+async function getSmartAIResponse(userPrompt) {
+    if (!userPrompt.trim()) return;
+
+    // ইউজার মেসেজ স্ক্রিনে দেখানো (যদি চ্যাট বক্স থাকে)
+    appendChatMessage("King Sajid", userPrompt);
+    addActivityLog(`Command given: "${userPrompt}"`);
+
+    let queenReply = "সাজিদ ভাইয়া, আপনার কমান্ড গড মোডে প্রসেস করা হচ্ছে।";
+    let lowerPrompt = userPrompt.toLowerCase();
+
+    // স্মার্ট লজিক ও কন্ডিশন
+    if (lowerPrompt.includes("sajid") || lowerPrompt.includes("সাজিদ")) {
+        queenReply = "স্বাগতম বস সাজিদ! নর্সিংদী এআই ল্যাব এবং ২৪ ক্যারেট গোল্ড সিকিউরিটি ১০০% সুরক্ষিত ও একটিভ আছে।";
+    } else if (lowerPrompt.includes("status") || lowerPrompt.includes("স্ট্যাটাস")) {
+        queenReply = "সকল সিস্টেম লাইভ ও রানিং। ভিআইপি কার্ড এবং ক্রিপ্টো ফ্লিট সিংক সফলভাবে কাজ করছে।";
+    } else if (lowerPrompt.includes("hello") || lowerPrompt.includes("হ্যালো")) {
+        queenReply = "হ্যালো সাজিদ ভাইয়া! মারুফা কুইন আপনার সেবায় প্রস্তুত। বলুন কী করতে হবে?";
+    } else if (lowerPrompt.includes("crypto") || lowerPrompt.includes("ক্রিপ্টো")) {
+        queenReply = "ক্রিপ্টো ডাটা লাইভ আপডেট হচ্ছে। বিটকয়েন এবং ইথেরিয়াম ফ্লিট সিংক সম্পন্ন।";
+    }
+
+    // সাউন্ড বাজিয়ে কুইনের উত্তর ভয়েসে ও চ্যাটে বলা
+    setTimeout(() => {
+        playSciFiAlertSound();
+        appendChatMessage("Marufa Queen", queenReply);
+        speakAsMarufa(queenReply);
+        addActivityLog(`Marufa Queen replied: "${queenReply}"`);
+    }, 600);
+}
+
+// চ্যাট বক্সে মেসেজ রেন্ডার করার হেলপার ফাংশন
+function appendChatMessage(senderName, messageText) {
+    const chatContainer = document.getElementById("chatBox") || document.querySelector(".chat-box");
+    if (chatContainer) {
+        const msgDiv = document.createElement("div");
+        msgDiv.style.margin = "8px 0";
+        msgDiv.innerHTML = `<strong style="color: ${senderName === 'King Sajid' ? '#00FF00' : '#FFD700'};">${senderName}:</strong> ${messageText}`;
+        chatContainer.appendChild(msgDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+}
+// ==========================================
+// ৪. লোকালস্টোরেজ ডাটা ও ক্রিপ্টো পার্সিস্টেন্স
+// ==========================================
+
+// সিস্টেম স্টেট সেভ করার ফাংশন
+function saveSystemState(key, value) {
+    try {
+        localStorage.setItem(`marufa_${key}`, JSON.stringify(value));
+        console.log(`Saved to LocalStorage: ${key}`);
+    } catch (e) {
+        console.error("Storage Error:", e);
+    }
+}
+
+// সিস্টেম স্টেট রিড করার ফাংশন
+function getSystemState(key) {
+    try {
+        const data = localStorage.getItem(`marufa_${key}`);
+        return data ? JSON.parse(data) : null;
+    } catch (e) {
+        console.error("Read Error:", e);
+        return null;
+    }
+}
+
+// ইনিশিয়ালাইজেশন ও গোল্ড সিকিউরিটি স্টেট চেক
+window.addEventListener("DOMContentLoaded", () => {
+    let currentGoldStatus = getSystemState("gold_security");
+    
+    if (!currentGoldStatus) {
+        saveSystemState("gold_security", { 
+            active: true, 
+            user: "King Sajid", 
+            level: "24K Gold", 
+            location: "Narsingdi",
+            timestamp: new Date().toISOString() 
+        });
+        console.log("New 24K Gold Security profile created for King Sajid.");
+    } else {
+        console.log("Marufa Security State Loaded:", currentGoldStatus);
+    }
+
+    // ক্রিপ্টো ও সিস্টেম অটো সিংক কল
+    if (typeof fetchLiveCryptoData === 'function') {
+        fetchLiveCryptoData();
+    }
+});
