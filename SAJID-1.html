@@ -513,3 +513,293 @@ window.addEventListener("DOMContentLoaded", () => {
         fetchLiveCryptoData();
     }
 });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARUFA-AI // ECHO QUEEN (King Sajid Edition)</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #FFD700;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid #FFD700;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        h1, h2, h3 {
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        .panel {
+            border: 1px dashed #FFD700;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #111;
+        }
+        button {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #fff;
+            box-shadow: 0 0 10px #FFD700;
+        }
+        input {
+            padding: 10px;
+            background: #000;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            border-radius: 5px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        #chatBox {
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            padding: 10px;
+            background: #000;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>👑 MARUFA-AI // GOD MODE 2027 👑</h1>
+        <h3 style="color: #00FF00;">Owner: King Sajid (Narsingdi Lab)</h3>
+
+        <!-- ১. বায়োমেট্রিক সিকিউরিটি গেটওয়ে প্যানেল -->
+        <div class="panel" id="securityPanel">
+            <h3>🛡️ Biometric & Skin Security Gateway</h3>
+            <p id="scanStatusText">সিস্টেম আনলক করতে ফিঙ্গারপ্রিন্ট বা ফেস স্কিন ভেরিফাই করুন</p>
+            <button onclick="startFingerprintScan()">👆 Scan Fingerprint</button>
+            <button onclick="startFaceSkinScan()">👤 Verify Face / Skin</button>
+            <div id="scanResultBox" style="color: #00FF00; margin-top: 10px; font-weight: bold;"></div>
+        </div>
+
+        <!-- ২. লাইভ ক্রিপ্টো ফ্লিট সিংক -->
+        <div class="panel">
+            <h3>💎 Live Crypto Fleet Sync</h3>
+            <p id="cryptoLiveDisplay">BTC: Loading... | ETH: Loading... | BNB: Loading...</p>
+        </div>
+
+        <!-- ৩. ভয়েস ও চ্যাট কন্ট্রোল প্যানেল -->
+        <div class="panel">
+            <h3>🎙️ Queen Voice & AI Command Center</h3>
+            <input type="text" id="userInputPrompt" placeholder="মারুফা কুইনকে কিছু বলুন বা কমান্ড দিন...">
+            <br>
+            <button onclick="handleUserCommand()">Send Command</button>
+            <button onclick="startMarufaListening()">🎙️ Speak</button>
+            
+            <div style="margin-top: 15px;">
+                <div id="chatBox"></div>
+            </div>
+        </div>
+
+        <!-- ৪. লাইভ অ্যাক্টিভিটি ও অডিট লগ -->
+        <div class="panel">
+            <h4>📊 Live Activity & Audit Logs</h4>
+            <ul id="logList" style="margin: 0; padding-left: 15px; font-size: 13px; color: #aaa;">
+                <li>System initialized successfully in God Mode.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // MARUFA-AI MASTER SCRIPT (SAJID BOSS EDITION)
+        // ==========================================
+
+        // অডিও অ্যালার্ট সাউন্ড (Web Audio API)
+        function playSciFiAlertSound() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.15);
+                
+                gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.15);
+            } catch (e) {
+                console.log("Audio Context Error:", e);
+            }
+        }
+
+        // অ্যাক্টিভিটি লগ এড করার ফাংশন
+        function addActivityLog(message) {
+            const logList = document.getElementById("logList");
+            if (logList) {
+                const li = document.createElement("li");
+                const timeNow = new Date().toLocaleTimeString();
+                li.innerText = `[${timeNow}] ${message}`;
+                logList.prepend(li);
+            }
+        }
+
+        // ফিঙ্গারপ্রিন্ট স্ক্যান সিমুলেশন
+        function startFingerprintScan() {
+            playSciFiAlertSound();
+            const statusText = document.getElementById("scanStatusText");
+            const resultBox = document.getElementById("scanResultBox");
+            
+            statusText.innerHTML = "🔄 ফিঙ্গারপ্রিন্ট ম্যাচিং চলছে...";
+            
+            setTimeout(() => {
+                statusText.innerHTML = "✅ ফিঙ্গারপ্রিন্ট ভেরিফাইড!";
+                resultBox.innerHTML = "Access Granted: King Sajid (24K Gold Security Active)";
+                speakAsMarufa("ফিঙ্গারপ্রিন্ট সফলভাবে মিলে গেছে, সাজিদ ভাইয়া।");
+                addActivityLog("Fingerprint verified for King Sajid.");
+            }, 1500);
+        }
+
+        // ফেস বা স্কিন স্ক্যান সিমুলেশন
+        function startFaceSkinScan() {
+            playSciFiAlertSound();
+            const statusText = document.getElementById("scanStatusText");
+            const resultBox = document.getElementById("scanResultBox");
+            
+            statusText.innerHTML = "🔄 ফেস স্কিন স্ক্যান করা হচ্ছে...";
+            
+            setTimeout(() => {
+                statusText.innerHTML = "✅ ফেস স্কিন আইডি ম্যাচড!";
+                resultBox.innerHTML = "God Mode 2027 Authorized for Sajid Boss.";
+                speakAsMarufa("ফেস স্কিন স্ক্যান সফল। সিস্টেম ফুল কন্ট্রোলে আছে।");
+                addActivityLog("Face skin scan verified successfully.");
+            }, 1500);
+        }
+
+        // লাইভ ক্রিপ্টো ডাটা ফেচিং
+        async function fetchLiveCryptoData() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin&vs_currencies=usd');
+                const data = await response.json();
+                
+                const btc = data.bitcoin ? data.bitcoin.usd : '---';
+                const eth = data.ethereum ? data.ethereum.usd : '---';
+                const bnb = data.binancecoin ? data.binancecoin.usd : '---';
+
+                const displayElem = document.getElementById("cryptoLiveDisplay");
+                if (displayElem) {
+                    displayElem.innerHTML = `BTC: $${btc} | ETH: $${eth} | BNB: $${bnb}`;
+                }
+            } catch (err) {
+                console.error("Crypto Fetch Error:", err);
+            }
+        }
+        setInterval(fetchLiveCryptoData, 30000);
+        fetchLiveCryptoData();
+
+        // টেক্সট-টু-স্পিচ (Queen Voice)
+        function speakAsMarufa(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'bn-BD';
+                speech.pitch = 1.1;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+
+        // চ্যাট বক্সে মেসেজ রেন্ডার করা
+        function appendChatMessage(senderName, messageText) {
+            const chatContainer = document.getElementById("chatBox");
+            if (chatContainer) {
+                const msgDiv = document.createElement("div");
+                msgDiv.style.margin = "6px 0";
+                msgDiv.innerHTML = `<strong style="color: ${senderName === 'King Sajid' ? '#00FF00' : '#FFD700'};">${senderName}:</strong> ${messageText}`;
+                chatContainer.appendChild(msgDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
+
+        // ইউজার কমান্ড হ্যান্ডেলিং
+        function handleUserCommand() {
+            const inputField = document.getElementById("userInputPrompt");
+            const userPrompt = inputField.value.trim();
+            if (!userPrompt) return;
+
+            appendChatMessage("King Sajid", userPrompt);
+            addActivityLog(`Command given: "${userPrompt}"`);
+            inputField.value = "";
+
+            let queenReply = "সাজিদ ভাইয়া, আপনার কমান্ড গড মোডে প্রসেস করা হয়েছে।";
+            let lowerPrompt = userPrompt.toLowerCase();
+
+            if (lowerPrompt.includes("sajid") || lowerPrompt.includes("সাজিদ")) {
+                queenReply = "স্বাগতম বস সাজিদ! নর্সিংদী এআই ল্যাব এবং ২৪ ক্যারেট গোল্ড সিকিউরিটি ১০০% সুরক্ষিত আছে।";
+            } else if (lowerPrompt.includes("status") || lowerPrompt.includes("স্ট্যাটাস")) {
+                queenReply = "সকল সিস্টেম লাইভ ও রানিং। ভিআইপি কার্ড এবং ক্রিপ্টো ফ্লিট সিংক সক্রিয়।";
+            } else if (lowerPrompt.includes("crypto") || lowerPrompt.includes("ক্রিপ্টো")) {
+                queenReply = "ক্রিপ্টো ডাটা লাইভ আপডেট হচ্ছে। বিটকয়েন এবং ইথেরিয়াম ফ্লিট সিংক সম্পন্ন।";
+            }
+
+            setTimeout(() => {
+                playSciFiAlertSound();
+                appendChatMessage("Marufa Queen", queenReply);
+                speakAsMarufa(queenReply);
+                addActivityLog(`Queen Responded: "${queenReply}"`);
+            }, 500);
+        }
+
+        // ভয়েস রিকগনিশন
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.lang = 'bn-BD';
+            recognition.onresult = function(event) {
+                const text = event.results[0][0].transcript;
+                document.getElementById("userInputPrompt").value = text;
+                handleUserCommand();
+            };
+        }
+
+        function startMarufaListening() {
+            if (recognition) {
+                recognition.start();
+                addActivityLog("Microphone listening activated...");
+            } else {
+                alert("আপনার ব্রাউজার ভয়েস রিকগনিশন সাপোর্ট করে না।");
+            }
+        }
+
+        // লোকালস্টোরেজ স্টেট ম্যানেজমেন্ট
+        window.addEventListener("DOMContentLoaded", () => {
+            let savedState = localStorage.getItem("marufa_god_mode");
+            if (!savedState) {
+                localStorage.setItem("marufa_god_mode", JSON.stringify({ user: "King Sajid", status: "Active" }));
+                addActivityLog("God Mode state saved to LocalStorage.");
+            }
+        });
+    </script>
+</body>
+</html>
