@@ -973,3 +973,36 @@ window.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
+<!-- VIP God Mode Payment Modal / Section ($1000) -->
+<div id="vip-gateway" style="background: #0d0d0d; border: 2px solid #00ff66; padding: 20px; border-radius: 12px; margin: 15px 0; color: #fff; font-family: monospace; box-shadow: 0 0 15px rgba(0,255,102,0.3);">
+    <h3 style="color: #00ff66; text-align: center; margin-top: 0;">💎 $5B EMPIRE - EXCLUSIVE GOD MODE</h3>
+    <p style="text-align: center; font-size: 14px; color: #ccc;">আনলিমিটেড এআই পাওয়ার, সুপ্রীম ভয়েস এবং ফুল গড মোড অ্যাক্সেসের জন্য <strong>$1,000 USD (৳১,২০,০০০)</strong> দিয়ে এক্সক্লুসিভ ভিআইপি লাইসেন্স নিন।</p>
+    
+    <div style="background: #161616; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid #00ff66;">
+        <strong style="color: #00ff66;">🇧🇩 বিকাশ / নগদ (Personal):</strong><br>
+        <span style="font-size: 16px; user-select: all;">01918358389</span><br>
+        <small style="color: #888;">টাকা সেন্ড করে ট্রানজেকশন আইডি (TrxID) নিচে জমা দিন।</small>
+    </div>
+
+    <div style="background: #161616; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #3b82f6;">
+        <strong style="color: #3b82f6;">🌐 Trust Wallet (USDT / BNB BEP20):</strong><br>
+        <span style="font-size: 11px; word-break: break-all; user-select: all; color: #ddd;">0x9ae268059558f3247c731FA84D3528D0C9985836</span><br>
+        <small style="color: #888;">$1,000 USDT পাঠান • নেটওয়ার্ক: BNB Smart Chain (BEP20)</small>
+    </div>
+
+    <div style="display: flex; gap: 10px; flex-direction: column;">
+        <input type="text" id="trx-input" placeholder="আপনার TrxID বা Wallet Tx Hash লিখুন..." style="padding: 10px; background: #000; border: 1px solid #444; color: #fff; border-radius: 6px; outline: none;">
+        <button onclick="verifyVip()" style="background: #00ff66; color: #000; border: none; padding: 10px; font-weight: bold; border-radius: 6px; cursor: pointer;">এক্সক্লুসিভ অ্যাক্সেস ভেরিফাই করুন</button>
+    </div>
+</div>
+
+<script>
+function verifyVip() {
+    let val = document.getElementById('trx-input').value.trim();
+    if(val.length > 3) {
+        alert("পেমেন্ট সাবমিট হয়েছে! সাজিদ বস, ভেরিফিকেশন কমপ্লিট হলে সিস্টেম গড মোডে এন্ট্রি নেবে।");
+    } else {
+        alert("দয়া করে সঠিক TrxID বা Tx Hash দিন।");
+    }
+}
+</script>
